@@ -32,3 +32,11 @@ Your app is ready to be deployed!
 ## Deployment
 
 You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+
+## Dev Notes
+
+```
+$ docker run --rm -it -p 3000:3000 -v $PWD:/app -w /app node:18.12 bash
+# yarn install
+# yarn dev
+```
