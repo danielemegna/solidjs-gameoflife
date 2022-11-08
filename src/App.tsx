@@ -5,9 +5,9 @@ import { AliveCells } from './core/Game';
 const App: Component = () => {
 
   const initialState: AliveCells = [
-    [1, 2],
-    [2, 2],
-    [3, 2]
+    [0, 0],
+    [1, 0],
+    [2, 0]
   ]
 
   const [aliveCells, setAliveCells] = createSignal<AliveCells>(initialState);
@@ -15,7 +15,7 @@ const App: Component = () => {
   setInterval(() => console.log('tick'), 1000)
 
   return (
-    <Grid height={30} width={30} aliveCells={aliveCells()} />
+    <Grid height={20} width={20} aliveCells={aliveCells()} />
   );
 };
 
