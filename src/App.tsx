@@ -7,9 +7,9 @@ export type AliveCells = Coordinate[]
 const App: Component = () => {
 
   const initialState: AliveCells = [
-    [0,1],
-    [1,1],
-    [2,1]
+    [1,2],
+    [2,2],
+    [3,2]
   ]
 
   const [aliveCells, setAliveCells] = createSignal<AliveCells>(initialState);
