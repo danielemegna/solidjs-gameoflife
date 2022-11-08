@@ -35,6 +35,14 @@ You can deploy the `dist` folder to any static host provider (netlify, surge, no
 
 ## Dev Notes
 
+Run tests via jest:
+
+```
+$ yarn test
+```
+
+Temporary dev docker container
+
 ```
 $ docker run --rm -it -p 3000:3000 -v $PWD:/app -w /app node:18.12 bash
 # yarn install
