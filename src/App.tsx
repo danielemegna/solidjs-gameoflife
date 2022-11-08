@@ -1,15 +1,13 @@
 import { Component, createSignal } from 'solid-js';
-import { Grid} from './components/Grid';
-
-export type Coordinate = [number, number]
-export type AliveCells = Coordinate[]
+import { Grid } from './components/Grid';
+import { AliveCells } from './core/Game';
 
 const App: Component = () => {
 
   const initialState: AliveCells = [
-    [1,2],
-    [2,2],
-    [3,2]
+    [1, 2],
+    [2, 2],
+    [3, 2]
   ]
 
   const [aliveCells, setAliveCells] = createSignal<AliveCells>(initialState);
