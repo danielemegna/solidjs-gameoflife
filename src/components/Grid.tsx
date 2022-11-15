@@ -1,6 +1,6 @@
 import { Component, For } from "solid-js"
-import { Coordinate, equals } from "../core/Coordinate"
-import { AliveCells } from "../core/Game"
+import { AliveCells, includes } from "../core/AliveCells"
+import { Coordinate } from "../core/Coordinate"
 import "./style.css"
 
 
@@ -23,7 +23,7 @@ export const Grid: Component<Props> = ({ height, width, aliveCells }) => {
         <tr>
           <For each={generateIndexArrayForLength(width)}>{(y) => {
             const current: Coordinate = [x, y]
-            const alive = aliveCells.some((v: Coordinate) => equals(v, current))
+            const alive = includes(aliveCells, current)
             return <td classList={{ alive: alive, dead: !alive }}></td>
           }}</For>
         </tr>

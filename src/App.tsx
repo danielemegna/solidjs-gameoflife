@@ -1,6 +1,6 @@
 import { Component, createSignal } from 'solid-js';
 import { Grid } from './components/Grid';
-import { AliveCells } from './core/Game';
+import { AliveCells } from './core/AliveCells';
 
 const App: Component = () => {
 

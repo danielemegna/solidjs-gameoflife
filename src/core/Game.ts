@@ -1,6 +1,6 @@
-import { Coordinate, equals } from "./Coordinate"
+import { AliveCells, includes } from "./AliveCells"
+import { Coordinate } from "./Coordinate"
 
-export type AliveCells = Coordinate[]
 export type Boundaries = [Coordinate, Coordinate] | undefined
 
 export class Game {
@@ -54,9 +54,9 @@ export class Game {
       [x - 1, y + 1],
     ]
 
-    return neighbours.filter((c: Coordinate) => {
-      return this.aliveCells.some((v: Coordinate) => equals(v, c))
-    }).length
+    return neighbours
+      .filter((c: Coordinate) => includes(this.aliveCells, c))
+      .length
 
   }
 }
