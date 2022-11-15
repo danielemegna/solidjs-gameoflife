@@ -14,7 +14,7 @@ describe('get alive cells from a new Game', () => {
   })
 
   test('init board with some alive cells', () => {
-    const aliveCellCoordinates: Coordinate[] = [[0,1],[0,2],[3,3]]
+    const aliveCellCoordinates: Coordinate[] = [[0, 1], [0, 2], [3, 3]]
     const game = new Game(aliveCellCoordinates)
 
     const aliveCells: AliveCells = game.getAliveCells()
@@ -36,7 +36,7 @@ describe('evolve a Game and check alive cells', () => {
   })
 
   test('single alive cell dead in an empty board', () => {
-    const aliveCellCoordinate: Coordinate = [0,1]
+    const aliveCellCoordinate: Coordinate = [0, 1]
     const game = new Game([aliveCellCoordinate])
 
     const evolved = game.evolve()
@@ -46,7 +46,7 @@ describe('evolve a Game and check alive cells', () => {
   })
 
   test('geme knows', () => {
-    const aliveCellCoordinate: Coordinate = [0,1]
+    const aliveCellCoordinate: Coordinate = [0, 1]
     const game = new Game([aliveCellCoordinate])
 
     const evolved = game.evolve()
@@ -61,7 +61,7 @@ describe('evolve a Game and check alive cells', () => {
       x x . --> x x .
       . . .     . . .
     */
-    const aliveCellCoordinates: Coordinate[] = [[0,0],[1,0],[0,1],[1,1]]
+    const aliveCellCoordinates: Coordinate[] = [[0, 0], [1, 0], [0, 1], [1, 1]]
     const game = new Game(aliveCellCoordinates)
 
     const evolvedGame = game.evolve()
@@ -76,13 +76,13 @@ describe('evolve a Game and check alive cells', () => {
       . x . --> x x x
       . x .     . . .
     */
-    const aliveCellCoordinates: Coordinate[] = [[1,0],[1,1],[1,2]]
+    const aliveCellCoordinates: Coordinate[] = [[1, 0], [1, 1], [1, 2]]
     const game = new Game(aliveCellCoordinates)
 
     const evolvedGame = game.evolve()
 
     const aliveCells: AliveCells = evolvedGame.getAliveCells()
-    const expectedEvolvedAliveCoordinates: Coordinate[] = [[0,1],[1,1],[2,1]]
+    const expectedEvolvedAliveCoordinates: Coordinate[] = [[0, 1], [1, 1], [2, 1]]
     expect(aliveCells).toStrictEqual(expectedEvolvedAliveCoordinates)
   })
 
@@ -106,12 +106,12 @@ describe('get game boundaries from a Game', () => {
       . x . --> [0,0],[2,2]
       . . .
     */
-    const aliveCellCoordinates: Coordinate[] = [[1,1]]
+    const aliveCellCoordinates: Coordinate[] = [[1, 1]]
     const game = new Game(aliveCellCoordinates)
 
     const boundaries: Boundaries = game.getBoundaries()
 
-    const expectedBoundaries: Boundaries = [[0,0],[2,2]]
+    const expectedBoundaries: Boundaries = [[0, 0], [2, 2]]
     expect(boundaries).toStrictEqual(expectedBoundaries)
   })
 
@@ -121,12 +121,12 @@ describe('get game boundaries from a Game', () => {
       . x . --> [-1,-1],[3,3]
       x x .
     */
-    const aliveCellCoordinates: Coordinate[] = [[1,0], [2,0], [1,1], [0,2],[1,2]]
+    const aliveCellCoordinates: Coordinate[] = [[1, 0], [2, 0], [1, 1], [0, 2], [1, 2]]
     const game = new Game(aliveCellCoordinates)
 
     const boundaries: Boundaries = game.getBoundaries()
 
-    const expectedBoundaries: Boundaries = [[-1,-1],[3,3]]
+    const expectedBoundaries: Boundaries = [[-1, -1], [3, 3]]
     expect(boundaries).toStrictEqual(expectedBoundaries)
   })
 
