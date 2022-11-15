@@ -100,6 +100,11 @@ describe('get game boundaries from a Game', () => {
   })
 
   test('boundaries with single alive cell', () => {
+    /*
+      . . .
+      . x . --> [0,0],[2,2]
+      . . .
+    */
     const aliveCellCoordinates: Coordinate[] = [[1,1]]
     const game = new Game(aliveCellCoordinates)
 
