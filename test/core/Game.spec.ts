@@ -114,4 +114,19 @@ describe('get game boundaries from a Game', () => {
     expect(boundaries).toStrictEqual(expectedBoundaries)
   })
 
+  test('boundaries with more alive cell', () => {
+    /*
+      . x x
+      . x . --> [-1,-1],[3,3]
+      x x .
+    */
+    const aliveCellCoordinates: Coordinate[] = [[1,0], [2,0], [1,1], [0,2],[1,2]]
+    const game = new Game(aliveCellCoordinates)
+
+    const boundaries: Boundaries = game.getBoundaries()
+
+    const expectedBoundaries: Boundaries = [[-1,-1],[3,3]]
+    expect(boundaries).toStrictEqual(expectedBoundaries)
+  })
+
 })

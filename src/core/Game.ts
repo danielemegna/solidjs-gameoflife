@@ -21,11 +21,20 @@ export class Game {
   }
 
   getBoundaries(): Boundaries {
-    if(this.aliveCells.length === 0)
+    if (this.aliveCells.length === 0)
       return undefined
 
-
-    const [x,y]: Coordinate = this.aliveCells[0]
-    return [[x-1,y-1],[x+1,y+1]]
+    const xList = this.aliveCells.map(([x, _]) => x)
+    const yList = this.aliveCells.map(([_, y]) => y)
+    return [
+      [
+        Math.min(...xList) - 1,
+        Math.min(...yList) - 1
+      ],
+      [
+        Math.max(...xList) + 1,
+        Math.max(...yList) + 1
+      ]
+    ]
   }
 }
