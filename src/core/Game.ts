@@ -1,5 +1,6 @@
 import { AliveCells, includes } from "./AliveCells"
 import { Coordinate } from "./Coordinate"
+import { CellState, nextStateFor } from "./rules/StandardEvolutionRule"
 
 export type Boundaries = [Coordinate, Coordinate] | undefined
 
@@ -16,8 +17,25 @@ export class Game {
   }
 
   evolve(): Game {
+    const boundaries = this.getBoundaries()
+    if (!boundaries) return new Game([])
+
     const newAliveCells: AliveCells = []
-    //.... evolution here
+    const [topLeft, bottomRight] = boundaries
+    const [leftX, topY] = topLeft
+    const [rightX, bottomY] = bottomRight
+
+    for (let x = leftX; x <= rightX; x++) {
+      for (let y = bottomY; y <= topY; y++) {
+        const currentCoordinate: Coordinate = [x, y]
+        const currentState = this.cellStateOf(currentCoordinate)
+        const aliveNeighbours = this.getAliveNeighboursOf(currentCoordinate)
+        const nextState = nextStateFor(currentState, aliveNeighbours)
+        if (nextState === CellState.ALIVE)
+          newAliveCells.push(currentCoordinate)
+      }
+    }
+
     return new Game(newAliveCells)
   }
 
@@ -58,4 +76,10 @@ export class Game {
       .length
 
   }
+
+  private cellStateOf(coordinate: Coordinate): CellState {
+    return includes(this.aliveCells, coordinate) ?
+      CellState.ALIVE : CellState.DEAD
+  }
+
 }

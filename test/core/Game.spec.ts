@@ -47,13 +47,13 @@ describe('evolve a Game and check alive cells', () => {
   })
 
 
-  test.skip('2x2 block is a static pattern', () => {
+  test('2x2 block is a static pattern', () => {
     /*
       . . .     . . .
       x x . --> x x .
       x x .     x x .
     */
-    const aliveCellCoordinates: Coordinate[] = [[0, 0], [1, 0], [0, 1], [1, 1]]
+    const aliveCellCoordinates: Coordinate[] = [[0, 0], [0, 1], [1, 0], [1, 1]]
     const game = new Game(aliveCellCoordinates)
 
     const evolvedGame = game.evolve()
@@ -62,7 +62,7 @@ describe('evolve a Game and check alive cells', () => {
     expect(aliveCells).toStrictEqual(aliveCellCoordinates)
   })
 
-  test.skip('single alive cell dead in an empty board', () => {
+  test('single alive cell dead in an empty board', () => {
     /*
       . x .     . . .
       . x . --> x x x
