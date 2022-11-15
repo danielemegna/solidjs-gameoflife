@@ -1,4 +1,5 @@
-export type Coordinate = [number, number]
+import { Coordinate } from "./Coordinate"
+
 export type AliveCells = Coordinate[]
 export type Boundaries = [Coordinate, Coordinate] | undefined
 

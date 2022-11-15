@@ -1,5 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
-import { AliveCells, Boundaries, Coordinate, Game } from '../../src/core/Game'
+import { Coordinate } from '../../src/core/Coordinate'
+import { AliveCells, Boundaries, Game } from '../../src/core/Game'
 
 describe('get alive cells from a new Game', () => {
 
