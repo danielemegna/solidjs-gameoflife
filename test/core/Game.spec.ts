@@ -49,9 +49,9 @@ describe('evolve a Game and check alive cells', () => {
 
   test.skip('2x2 block is a static pattern', () => {
     /*
-      x x .     x x .
-      x x . --> x x .
       . . .     . . .
+      x x . --> x x .
+      x x .     x x .
     */
     const aliveCellCoordinates: Coordinate[] = [[0, 0], [1, 0], [0, 1], [1, 1]]
     const game = new Game(aliveCellCoordinates)
@@ -80,7 +80,7 @@ describe('evolve a Game and check alive cells', () => {
 
 })
 
-describe('get game boundaries from a Game', () => {
+describe('get game boundaries from a Game [top-left, bottom-right]', () => {
 
   test('empty game has undefined boundaries', () => {
     const aliveCellCoordinates: Coordinate[] = []
@@ -95,7 +95,7 @@ describe('get game boundaries from a Game', () => {
   test('boundaries with single alive cell', () => {
     /*
       . . .
-      . x . --> [0,0],[2,2]
+      . x . --> [0,2],[2,0]
       . . .
     */
     const aliveCellCoordinates: Coordinate[] = [[1, 1]]
@@ -103,22 +103,22 @@ describe('get game boundaries from a Game', () => {
 
     const boundaries: Boundaries = game.getBoundaries()
 
-    const expectedBoundaries: Boundaries = [[0, 0], [2, 2]]
+    const expectedBoundaries: Boundaries = [[0, 2], [2, 0]]
     expect(boundaries).toStrictEqual(expectedBoundaries)
   })
 
   test('boundaries with more alive cell', () => {
     /*
       . x x
-      . x . --> [-1,-1],[3,3]
+      . x . --> [-1,3],[3,-1]
       x x .
     */
-    const aliveCellCoordinates: Coordinate[] = [[1, 0], [2, 0], [1, 1], [0, 2], [1, 2]]
+    const aliveCellCoordinates: Coordinate[] = [[0, 0], [1, 0], [1, 1], [1, 2], [2, 2]]
     const game = new Game(aliveCellCoordinates)
 
     const boundaries: Boundaries = game.getBoundaries()
 
-    const expectedBoundaries: Boundaries = [[-1, -1], [3, 3]]
+    const expectedBoundaries: Boundaries = [[-1, 3], [3, -1]]
     expect(boundaries).toStrictEqual(expectedBoundaries)
   })
 
@@ -131,13 +131,13 @@ test('get alive neighbours of a coordinate', () => {
     . x .
     x x .
   */
-  const aliveCellCoordinates: Coordinate[] = [[1, 0], [2, 0], [1, 1], [0, 2], [1, 2]]
+  const aliveCellCoordinates: Coordinate[] = [[0, 0], [1, 0], [1, 1], [1, 2], [2, 2]]
   const game = new Game(aliveCellCoordinates)
 
-  expect(game.getAliveNeighboursOf([-1, -1])).toBe(0)
-  expect(game.getAliveNeighboursOf([0, 0])).toBe(2)
+  expect(game.getAliveNeighboursOf([-1, 3])).toBe(0)
+  expect(game.getAliveNeighboursOf([0, 2])).toBe(2)
   expect(game.getAliveNeighboursOf([1, 1])).toBe(4)
-  expect(game.getAliveNeighboursOf([3, -1])).toBe(1)
-  expect(game.getAliveNeighboursOf([-1, 3])).toBe(1)
+  expect(game.getAliveNeighboursOf([3, 3])).toBe(1)
+  expect(game.getAliveNeighboursOf([-1, -1])).toBe(1)
 
 })

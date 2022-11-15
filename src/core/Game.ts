@@ -27,16 +27,15 @@ export class Game {
 
     const xList = this.aliveCells.map(([x, _]) => x)
     const yList = this.aliveCells.map(([_, y]) => y)
-    return [
-      [
-        Math.min(...xList) - 1,
-        Math.min(...yList) - 1
-      ],
-      [
-        Math.max(...xList) + 1,
-        Math.max(...yList) + 1
-      ]
+    const topLeft: Coordinate = [
+      Math.min(...xList) - 1,
+      Math.max(...yList) + 1
     ]
+    const bottomRight: Coordinate = [
+      Math.max(...xList) + 1,
+      Math.min(...yList) - 1
+    ]
+    return [topLeft, bottomRight]
   }
 
   getAliveNeighboursOf([x, y]: Coordinate): number {
