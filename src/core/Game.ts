@@ -1,4 +1,4 @@
-import { Coordinate } from "./Coordinate"
+import { Coordinate, equals } from "./Coordinate"
 
 export type AliveCells = Coordinate[]
 export type Boundaries = [Coordinate, Coordinate] | undefined
@@ -37,5 +37,26 @@ export class Game {
         Math.max(...yList) + 1
       ]
     ]
+  }
+
+  getAliveNeighboursOf([x, y]: Coordinate): number {
+
+    const neighbours: Coordinate[] = [
+      [x, y + 1],
+      [x, y - 1],
+
+      [x + 1, y - 1],
+      [x + 1, y],
+      [x + 1, y + 1],
+
+      [x - 1, y - 1],
+      [x - 1, y],
+      [x - 1, y + 1],
+    ]
+
+    return neighbours.filter((c: Coordinate) => {
+      return this.aliveCells.some((v: Coordinate) => equals(v, c))
+    }).length
+
   }
 }

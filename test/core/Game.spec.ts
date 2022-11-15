@@ -131,3 +131,21 @@ describe('get game boundaries from a Game', () => {
   })
 
 })
+
+test('get alive neighbours of a coordinate', () => {
+
+  /*
+    . x x
+    . x .
+    x x .
+  */
+  const aliveCellCoordinates: Coordinate[] = [[1, 0], [2, 0], [1, 1], [0, 2], [1, 2]]
+  const game = new Game(aliveCellCoordinates)
+
+  expect(game.getAliveNeighboursOf([-1, -1])).toBe(0)
+  expect(game.getAliveNeighboursOf([0, 0])).toBe(2)
+  expect(game.getAliveNeighboursOf([1, 1])).toBe(4)
+  expect(game.getAliveNeighboursOf([3, -1])).toBe(1)
+  expect(game.getAliveNeighboursOf([-1, 3])).toBe(1)
+
+})
