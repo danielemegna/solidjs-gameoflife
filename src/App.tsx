@@ -1,6 +1,7 @@
-import { Component, createSignal } from 'solid-js';
+import { Component, createSignal, onCleanup } from 'solid-js';
 import { Grid } from './components/Grid';
 import { AliveCells } from './core/AliveCells';
+import { Game } from './core/Game';
 
 const App: Component = () => {
 
@@ -12,7 +13,18 @@ const App: Component = () => {
 
   const [aliveCells, setAliveCells] = createSignal<AliveCells>(initialState);
 
-  setInterval(() => console.log('tick'), 1000)
+  const interval = setInterval(
+    () => {
+      // a new game at every tick not so good ...
+      const game = new Game(aliveCells())
+      const evolvedGame = game.evolve()
+      const newAliveCells = evolvedGame.getAliveCells()
+      setAliveCells(newAliveCells)
+    },
+    300
+  );
+  onCleanup(() => clearInterval(interval));
+
 
   return (
     <Grid height={20} width={20} aliveCells={aliveCells()} />
