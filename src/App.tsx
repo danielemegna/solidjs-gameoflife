@@ -6,6 +6,9 @@ import { Game } from './core/Game';
 const App: Component = () => {
 
   const initialState: AliveCells = [
+    [-4,-5],
+    [-5,-5],
+    [-6,-5],
     [0, 0],
     [1, 0],
     [2, 0]
