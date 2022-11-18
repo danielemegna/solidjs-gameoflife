@@ -31,8 +31,11 @@ const App: Component = () => {
   onCleanup(() => clearInterval(interval));
 
 
-  return (
+  return (<>
     <Grid height={20} width={20} aliveCells={aliveCells()} />
+    <pre>Alive cells: {aliveCells().length}</pre>
+    <pre>{JSON.stringify(aliveCells())}</pre>
+  </>
   );
 };
 
