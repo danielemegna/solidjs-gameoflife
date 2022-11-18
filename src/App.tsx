@@ -3,18 +3,20 @@ import { Grid } from './components/Grid';
 import { AliveCells } from './core/AliveCells';
 import { Game } from './core/Game';
 
+const generateRandomInitialState = (aliveCellNumber: number): AliveCells => {
+  const result: AliveCells = []
+  const min = -10
+  const max = 10
+  for (let i = 0; i < aliveCellNumber; i++) {
+    const x = Math.floor(Math.random() * (max - min) + min)
+    const y = Math.floor(Math.random() * (max - min) + min)
+    result.push([x, y])
+  }
+  return result
+}
+
 const App: Component = () => {
-
-  const initialState: AliveCells = [
-    [-4,-5],
-    [-5,-5],
-    [-6,-5],
-    [0, 0],
-    [1, 0],
-    [2, 0]
-  ]
-
-  const [aliveCells, setAliveCells] = createSignal<AliveCells>(initialState);
+  const [aliveCells, setAliveCells] = createSignal<AliveCells>(generateRandomInitialState(200));
 
   const interval = setInterval(
     () => {
