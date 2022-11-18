@@ -16,25 +16,16 @@ const generateRandomInitialState = (aliveCellNumber: number): AliveCells => {
 }
 
 const App: Component = () => {
-  const [aliveCells, setAliveCells] = createSignal<AliveCells>(generateRandomInitialState(200));
+  const initialGame = new Game(generateRandomInitialState(200))
+  const [game, setGame] = createSignal<Game>(initialGame)
 
-  const interval = setInterval(
-    () => {
-      // a new game at every tick not so good ...
-      const game = new Game(aliveCells())
-      const evolvedGame = game.evolve()
-      const newAliveCells = evolvedGame.getAliveCells()
-      setAliveCells(newAliveCells)
-    },
-    300
-  );
+  const interval = setInterval(() => setGame(game().evolve()), 300)
   onCleanup(() => clearInterval(interval));
 
-
   return (<>
-    <Grid height={20} width={20} aliveCells={aliveCells()} />
-    <pre>Alive cells: {aliveCells().length}</pre>
-    <pre>{JSON.stringify(aliveCells())}</pre>
+    <Grid height={20} width={20} aliveCells={game().getAliveCells()} />
+    <pre>Alive cells: {game().getAliveCells().length}</pre>
+    <pre>{JSON.stringify(game().getAliveCells())}</pre>
   </>
   );
 };
