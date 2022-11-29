@@ -21,7 +21,7 @@ export const Grid: Component<Props> = (props) => {
   return (
     <table class={styles.gridTable}>
       <tbody>
-        {gridSizeRange(props.boundaries).map((y: number) =>
+        {gridSizeRange(props.boundaries).reverse().map((y: number) =>
           <tr>
             {gridSizeRange(props.boundaries).map((x: number) => {
               const current: Coordinate = [x, y]
