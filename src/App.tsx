@@ -23,7 +23,7 @@ const App: Component = () => {
   onCleanup(() => clearInterval(interval));
 
   return (<>
-    <Grid height={20} width={20} aliveCells={game().getAliveCells()} />
+    <Grid boundaries={game().getBoundaries()} aliveCells={game().getAliveCells()} />
     <pre>
       Alive cells: {game().getAliveCells().length}\n 
       Boundaries: {JSON.stringify(game().getBoundaries())}
