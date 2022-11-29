@@ -15,6 +15,26 @@ const generateRandomInitialState = (aliveCellNumber: number): AliveCells => {
   return result
 }
 
+const glider = (): AliveCells => {
+  return [
+    [0,0],
+    [1,0],
+    [2,0],
+    [2,1],
+    [1,2],
+  ] as AliveCells
+}
+
+const tryToBetterRenderThis = (): AliveCells => {
+  return [
+    [-10,0],
+    [-10,-1],
+    [-11,-1],
+    [-11,0],
+    ...glider()
+  ] as AliveCells
+}
+
 const App: Component = () => {
   const initialGame = new Game(generateRandomInitialState(200))
   const [game, setGame] = createSignal<Game>(initialGame)
