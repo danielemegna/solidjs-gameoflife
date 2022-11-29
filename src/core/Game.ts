@@ -2,7 +2,12 @@ import { AliveCells, includes } from "./AliveCells"
 import { Coordinate } from "./Coordinate"
 import { CellState, nextStateFor } from "./rules/StandardEvolutionRule"
 
-export type Boundaries = [Coordinate, Coordinate] | undefined
+export type Boundaries = {
+  top: number,
+  left: number
+  bottom: number,
+  right: number
+} | undefined
 
 export class Game {
 
@@ -21,12 +26,9 @@ export class Game {
     if (!boundaries) return new Game([])
 
     const newAliveCells: AliveCells = []
-    const [topLeft, bottomRight] = boundaries
-    const [leftX, topY] = topLeft
-    const [rightX, bottomY] = bottomRight
 
-    for (let x = leftX; x <= rightX; x++) {
-      for (let y = bottomY; y <= topY; y++) {
+    for (let x = boundaries.left; x <= boundaries.right; x++) {
+      for (let y = boundaries.bottom; y <= boundaries.top; y++) {
         const currentCoordinate: Coordinate = [x, y]
         const currentState = this.cellStateOf(currentCoordinate)
         const aliveNeighbours = this.getAliveNeighboursOf(currentCoordinate)
@@ -45,15 +47,12 @@ export class Game {
 
     const xList = this.aliveCells.map(([x, _]) => x)
     const yList = this.aliveCells.map(([_, y]) => y)
-    const topLeft: Coordinate = [
-      Math.min(...xList) - 1,
-      Math.max(...yList) + 1
-    ]
-    const bottomRight: Coordinate = [
-      Math.max(...xList) + 1,
-      Math.min(...yList) - 1
-    ]
-    return [topLeft, bottomRight]
+    return {
+      top: Math.max(...yList) + 1,
+      left: Math.min(...xList) - 1,
+      bottom: Math.min(...yList) - 1,
+      right: Math.max(...xList) + 1,
+    }
   }
 
   getAliveNeighboursOf([x, y]: Coordinate): number {

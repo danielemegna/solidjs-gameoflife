@@ -103,7 +103,7 @@ describe('get game boundaries from a Game [top-left, bottom-right]', () => {
 
     const boundaries: Boundaries = game.getBoundaries()
 
-    const expectedBoundaries: Boundaries = [[0, 2], [2, 0]]
+    const expectedBoundaries: Boundaries = { top: 2, left: 0, bottom: 0, right: 2 }
     expect(boundaries).toStrictEqual(expectedBoundaries)
   })
 
@@ -118,7 +118,7 @@ describe('get game boundaries from a Game [top-left, bottom-right]', () => {
 
     const boundaries: Boundaries = game.getBoundaries()
 
-    const expectedBoundaries: Boundaries = [[-1, 3], [3, -1]]
+    const expectedBoundaries: Boundaries = { top: 3, left: -1, bottom: -1, right: 3 }
     expect(boundaries).toStrictEqual(expectedBoundaries)
   })
 
