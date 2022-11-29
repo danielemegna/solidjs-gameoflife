@@ -25,8 +25,9 @@ const App: Component = () => {
   return (<>
     <Grid boundaries={game().getBoundaries()} aliveCells={game().getAliveCells()} />
     <pre>
-      Alive cells: {game().getAliveCells().length}\n 
-      Boundaries: {JSON.stringify(game().getBoundaries())}
+      Alive cells: {game().getAliveCells().length} \n
+      Boundaries: {JSON.stringify(game().getBoundaries())} \n
+      Cells: {JSON.stringify(game().getAliveCells())}
     </pre>
   </>
   );
