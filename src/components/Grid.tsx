@@ -1,7 +1,7 @@
 import { Component } from "solid-js"
 import { AliveCells, includes } from "../core/AliveCells"
 import { Coordinate } from "../core/Coordinate"
-import "./style.css"
+import styles from "./style.module.css"
 
 interface Props {
   height: number
@@ -16,14 +16,14 @@ const generateIndexArrayForLength = (length: number): number[] => {
 
 export const Grid: Component<Props> = (props) => {
   return (
-    <table>
+    <table class={styles.gridTable}>
       <tbody>
         {generateIndexArrayForLength(props.height).map((x: number) =>
           <tr>
             {generateIndexArrayForLength(props.width).map((y: number) => {
               const current: Coordinate = [x, y]
               const alive = includes(props.aliveCells, current)
-              return <td classList={{ alive: alive, dead: !alive }}></td>
+              return <td classList={{ [styles.aliveCell]: alive, [styles.deadCell]: !alive }}></td>
             })}
           </tr>
         )}
