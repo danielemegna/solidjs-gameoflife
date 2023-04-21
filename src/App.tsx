@@ -5,8 +5,8 @@ import { Game } from './core/Game';
 
 const generateRandomInitialState = (aliveCellNumber: number): AliveCells => {
   const result: AliveCells = []
-  const min = -10
-  const max = 10
+  const min = -20
+  const max = 20
   for (let i = 0; i < aliveCellNumber; i++) {
     const x = Math.floor(Math.random() * (max - min) + min)
     const y = Math.floor(Math.random() * (max - min) + min)
@@ -36,7 +36,7 @@ const tryToBetterRenderThis = (): AliveCells => {
 }
 
 const App: Component = () => {
-  const initialGame = new Game(generateRandomInitialState(200))
+  const initialGame = new Game(generateRandomInitialState(500))
   const [game, setGame] = createSignal<Game>(initialGame)
 
   const interval = setInterval(() => setGame(game().evolve()), 300)
@@ -47,7 +47,7 @@ const App: Component = () => {
     <pre>
       Alive cells: {game().getAliveCells().length} \n
       Boundaries: {JSON.stringify(game().getBoundaries())} \n
-      Cells: {JSON.stringify(game().getAliveCells())}
+{/*       Cells: {JSON.stringify(game().getAliveCells())} */}
     </pre>
   </>
   );
