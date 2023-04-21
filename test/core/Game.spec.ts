@@ -47,7 +47,7 @@ describe('evolve a Game and check alive cells', () => {
   })
 
 
-  test('2x2 block is a static pattern', () => {
+  test('2x2 block static pattern', () => {
     /*
       . . .     . . .
       x x . --> x x .
@@ -62,7 +62,7 @@ describe('evolve a Game and check alive cells', () => {
     expect(aliveCells).toStrictEqual(aliveCellCoordinates)
   })
 
-  test('single alive cell dead in an empty board', () => {
+  test('blinker pattern', () => {
     /*
       . x .     . . .
       . x . --> x x x
